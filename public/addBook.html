@@ -6,12 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
-        <input type="text" name="bookName" placeholder="bookName" required>
+    <form action="/book/addbook" method="POST">
+        <input type="text" name="bookname" placeholder="bookname" required>
         <br>
         <input type="text" name="author" placeholder="author" required>
         <br>
-        <input type="number" name="copies" placeholder="copies" required>
+        <input type="number" name="quantity" placeholder="quantity" required>
+        <br>
+        <input type="text" name="details" placeholder="details">
         <br>
         <input type="url" name="image" placeholder="image" required>
         <br>
