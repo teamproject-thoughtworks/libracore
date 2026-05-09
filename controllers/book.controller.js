@@ -3,14 +3,13 @@ var bookModel= require("../model/book.model");
 const addbook = async (req, res) => {
    try {
     const existingBook = await bookModel.findOne({ bookname:req.body.bookname });
-    console.log(existingBook);
     if (existingBook) {
       return res.send("Book already exists")
     }
     else{
-      const newbookModel = new bookModel(req.body);
+      const newbookModel = new bookModel({...req.body,bookimg: req.file.path});
       await newbookModel.save();
-      res.send("Book added successfully");
+      res.send("Book added and file uploaded successfully"+req.file.path);
     }
    }
    catch (err) {
@@ -27,7 +26,6 @@ const getAllBooks = (req,res)=>{
 const deleteBook = async (req, res) => {
    try {
     const DeletedBook = await bookModel.findOneAndDelete({ bookname:req.params.bookname });
-    console.log(DeletedBook);
     if (!DeletedBook) {
       return res.send("Book not exists")
     }
@@ -42,7 +40,6 @@ const deleteBook = async (req, res) => {
 
 const updateBook = async(req,res)=>{
   try{
-    console.log(req.body);
     const UpdatedBook = await bookModel.findOneAndUpdate(
       { bookname:req.params.bookname },
       {$set:{
@@ -50,7 +47,6 @@ const updateBook = async(req,res)=>{
       }},
       {new: true}
     );
-    console.log(UpdatedBook);
     if (!UpdatedBook) {
       return res.send("Book not exists")
     }

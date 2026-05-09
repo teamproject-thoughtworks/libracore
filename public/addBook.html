@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/book/addbook" method="POST">
+    <form action="/book/addbook" method="POST" enctype="multipart/form-data">
         <input type="text" name="bookname" placeholder="bookname" required>
         <br>
         <input type="text" name="author" placeholder="author" required>
@@ -15,7 +15,7 @@
         <br>
         <input type="text" name="details" placeholder="details">
         <br>
-        <input type="url" name="image" placeholder="image" required>
+        <input type="file" name="bookimg" placeholder="bookimg" required>
         <br>
         <button>Add Book</button>
     </form>
