@@ -1,0 +1,71 @@
+.books-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.book-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    background-color: white;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.book-card:hover {
+    transform: scale(1.03);
+}
+
+.book-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book-card h2 {
+    margin-top: 10px;
+    color: #333;
+}
+
+.book-card p {
+    color: #555;
+    margin: 5px 0;
+}
+
+/* BUTTON CONTAINER */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.button-group button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.button-group button:first-child {
+    background-color: crimson;
+    color: white;
+}
+
+.button-group button:last-child {
+    background-color: royalblue;
+    color: white;
+}
+
+.button-group button:hover {
+    opacity: 0.8;
+}

@@ -5,6 +5,7 @@
   align-items: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
   font-family: Arial, sans-serif;
+  width: 100%;
 }
 
 .form {
