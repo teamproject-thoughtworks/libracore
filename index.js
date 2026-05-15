@@ -6,6 +6,9 @@ var dbConnect=require("./db");
 var multer = require("multer");
 var authRouter= require("./routes/auth.router");
 var bookRouter= require("./routes/book.router");
+var queueRouter=require("./routes/queue.router");
+var borrowRouter=require("./routes/borrow.router");
+var notificationRouter=require("./routes/notification.router");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -28,6 +31,9 @@ dbConnect();
 
 app.use("/auth",authRouter);
 app.use("/book",bookRouter);
+app.use("/queue",queueRouter);
+app.use("/borrow",borrowRouter);
+app.use("/notification",notificationRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello World')
