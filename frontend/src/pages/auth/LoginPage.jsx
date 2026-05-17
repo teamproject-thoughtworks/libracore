@@ -25,10 +25,13 @@ function LoginPage() {
       toast.success(`Welcome back, ${data.name || data.email}!`);
       navigate(data.role === "admin" ? "/admindash/dashboard" : "/studentdash/getallbooks");
     } catch (err) {
-      toast.error(err?.data?.message || "Invalid email or password.");
+      if (err.status === "FETCH_ERROR") {
+        toast.error("Unable to connect to the server. Please check if the backend is running.");
+      } else {
+        toast.error(err?.data?.message || "Invalid email or password.");
+      }
     }
   };
-
   return (
     <div className="auth-wrapper">
       <div className="auth-card">

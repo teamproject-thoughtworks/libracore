@@ -15,7 +15,6 @@ const initOverdueJob = (socketIo) => {
     try {
       const now = new Date();
 
-      // Find all borrows that are past due date and still 'borrowed'
       const overdueRecords = await Borrow.find({
         status: "borrowed",
         returnDate: { $lt: now },
@@ -50,7 +49,6 @@ const initOverdueJob = (socketIo) => {
     }
   };
 
-  // Run the check immediately, then every 24 hours
   checkOverdue();
   setInterval(checkOverdue, 24 * 60 * 60 * 1000);
 
