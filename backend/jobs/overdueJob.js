@@ -1,4 +1,3 @@
-const cron = require("node-cron");
 const Borrow = require("../models/Borrow.model");
 const Book = require("../models/Book.model");
 const Queue = require("../models/Queue.model");
@@ -11,8 +10,7 @@ let io = null;
 const initOverdueJob = (socketIo) => {
   io = socketIo;
 
-  // Run every day at midnight
-  cron.schedule("0 0 * * *", async () => {
+  const checkOverdue = async () => {
     logger.info("Running overdue check job...");
     try {
       const now = new Date();
@@ -50,9 +48,13 @@ const initOverdueJob = (socketIo) => {
     } catch (err) {
       logger.error("Overdue job error:", err.message);
     }
-  });
+  };
 
-  logger.info("Overdue cron job initialized (runs daily at midnight).");
+  // Run the check immediately, then every 24 hours
+  checkOverdue();
+  setInterval(checkOverdue, 24 * 60 * 60 * 1000);
+
+  logger.info("Overdue interval job initialized (runs daily).");
 };
 
 module.exports = initOverdueJob;

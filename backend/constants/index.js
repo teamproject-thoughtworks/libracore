@@ -1,5 +1,5 @@
 module.exports = {
-  BORROW_LIMIT: 2,
+  BORROW_LIMIT: 5,
   BORROW_DAYS: 7,
   FINE_PER_DAY: 5,
   MAX_EXTENSION_DAYS: 5,

@@ -40,15 +40,15 @@ function RegisterPage() {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">Full Name</label>
-            <input className="form-input" type="text" name="name" placeholder="John Doe" value={form.name} onChange={handleChange} required />
+            <input className="form-input" type="text" name="name" placeholder="enter name" value={form.name} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label className="form-label">Email Address</label>
-            <input className="form-input" type="email" name="email" placeholder="you@example.com" value={form.email} onChange={handleChange} required />
+            <input className="form-input" type="email" name="email" placeholder="enter your email" value={form.email} onChange={handleChange} required />
           </div>
           <div className="form-group">
             <label className="form-label">Password</label>
-            <input className="form-input" type="password" name="password" placeholder="Min. 6 characters" value={form.password} onChange={handleChange} required />
+            <input className="form-input" type="password" name="password" placeholder="password(6 characters)" value={form.password} onChange={handleChange} required />
           </div>
           <div style={{ background: "rgba(14, 165, 233, 0.1)", border: "1px solid rgba(14, 165, 233, 0.2)", borderRadius: "var(--radius-md)", padding: "12px 16px", marginBottom: 16, fontSize: "0.85rem", color: "var(--secondary)" }}>
             ℹ️ All accounts are registered as <strong>Student</strong>. Contact admin for admin access.

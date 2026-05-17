@@ -21,7 +21,7 @@ function BooksPage() {
   const navigate = useNavigate();
   const { isAdmin, user } = useAuth();
 
-  const { data, isLoading } = useGetAllBooksQuery({ search: debouncedSearch });
+  const { data, isLoading, refetch } = useGetAllBooksQuery({ search: debouncedSearch });
   const [deleteBook] = useDeleteBookMutation();
   const [borrowBook] = useBorrowbookMutation();
 
@@ -38,6 +38,7 @@ function BooksPage() {
     try {
       await deleteBook(bookname).unwrap();
       toast.success("Book deleted.");
+      refetch();
     } catch (err) {
       toast.error(err?.data?.message || "Failed to delete book.");
     }
@@ -46,10 +47,14 @@ function BooksPage() {
   const handleBorrow = async (bookId) => {
     try {
       const res = await borrowBook({ bookId, userId: user.id }).unwrap();
-      const msg = res?.queued
-        ? `Added to queue at position #${res.queuePosition}`
-        : "Book borrowed successfully!";
+      
+      // Use message from backend, or fallback
+      const msg = res?.message || (res?.data?.queued
+        ? `Added to queue at position #${res.data.queuePosition}`
+        : "Book borrowed successfully!");
+        
       toast.success(msg);
+      refetch(); // Ensure UI re-renders with new book quantities
     } catch (err) {
       toast.error(err?.data?.message || "Borrow failed.");
     }

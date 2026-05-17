@@ -28,6 +28,15 @@ const borrowBook = async ({ userId, bookId }, io) => {
     throw err;
   }
 
+  // 2.5 Check lifetime borrow limit for the same book (max 3 times)
+  const lifetimeBorrows = await Borrow.countDocuments({ userId, bookId });
+  if (lifetimeBorrows >= 3) {
+    const err = new Error("You have reached the maximum borrow limit (3 times) for this specific book.");
+    err.statusCode = 400;
+    err.code = "LIFETIME_LIMIT_REACHED";
+    throw err;
+  }
+
   // 3. Find book
   const book = await Book.findById(bookId);
   if (!book) {
