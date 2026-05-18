@@ -16,7 +16,9 @@ const SkeletonCard = () => (
 );
 
 function DashboardPage() {
-  const { data, isLoading, isError } = useGetDashboardStatsQuery();
+  const { data, isLoading, isError } = useGetDashboardStatsQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isError) return (
     <div className="empty-state">

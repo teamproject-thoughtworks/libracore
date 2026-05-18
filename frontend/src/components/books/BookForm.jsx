@@ -74,7 +74,7 @@ function BookForm({ mode = "add" }) {
         </div>
 
         {[
-          { name: "bookname", label: "Book Name *", placeholder: "e.g. The Great Gatsby" },
+          { name: "bookname", label: "Book Name *", placeholder: "e.g. JAva Pointer" },
           { name: "author", label: "Author *", placeholder: "e.g. F. Scott Fitzgerald" },
           { name: "ISBN", label: "ISBN", placeholder: "e.g. 978-3-16-148410-0" },
           { name: "category", label: "Category", placeholder: "e.g. Fiction, Science, History" },

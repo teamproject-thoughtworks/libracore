@@ -8,6 +8,21 @@ import { registerApi } from "../services/signupApi";
 import { loginApi } from "../services/loginApi";
 import { dashboardApi } from "../services/dashboardApi";
 
+const dashboardInvalidationMiddleware = (store) => (next) => (action) => {
+  const result = next(action);
+  
+  if (
+    action.type?.endsWith("/executeMutation/fulfilled") &&
+    (action.type?.startsWith("bookApi/") || 
+     action.type?.startsWith("borrowApi/") ||
+     action.type?.startsWith("registerApi/"))
+  ) {
+    store.dispatch(dashboardApi.util.invalidateTags(["Dashboard"]));
+  }
+  
+  return result;
+};
+
 export const store = configureStore({
   reducer: {
     auth: authReducer,
@@ -27,6 +42,7 @@ export const store = configureStore({
       queueApi.middleware,
       registerApi.middleware,
       loginApi.middleware,
-      dashboardApi.middleware
+      dashboardApi.middleware,
+      dashboardInvalidationMiddleware
     ),
 });
